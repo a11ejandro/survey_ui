@@ -1,3 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `""`;
+exports[`renders correctly 1`] = `
+<HorizontalBar
+  data={
+    Object {
+      "datasets": Array [
+        Object {
+          "data": Array [
+            0.02,
+            0.05,
+            0.1,
+          ],
+          "label": "1000 records",
+        },
+      ],
+      "labels": Array [
+        "go",
+        "ruby no AR",
+        "ruby + AR",
+      ],
+    }
+  }
+  height={80}
+  options={
+    Object {
+      "plugins": Object {
+        "datalabels": Object {
+          "align": "end",
+          "anchor": "end",
+          "color": "black",
+        },
+      },
+    }
+  }
+/>
+`;
