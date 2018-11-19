@@ -1,3 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `""`;
+exports[`renders correctly 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={24}
+>
+  <WithStyles(Grid)
+    item={true}
+    xs={4}
+  >
+    <TextField
+      id="page"
+      label="Page"
+      margin="normal"
+      onChange={[Function]}
+      required={false}
+      select={false}
+      value={0}
+      variant="standard"
+    />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    item={true}
+    xs={4}
+  >
+    <TextField
+      id="per_page"
+      label="Per Page"
+      margin="normal"
+      onChange={[Function]}
+      required={false}
+      select={false}
+      value={0}
+      variant="standard"
+    />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    item={true}
+    xs={4}
+  >
+    <br />
+    <WithStyles(Button)
+      color="primary"
+      id="submit_task"
+      onClick={[Function]}
+      variant="outlined"
+    >
+      Submit
+    </WithStyles(Button)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;
