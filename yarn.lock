@@ -76,6 +76,17 @@
   version "2.7.40"
   resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.7.40.tgz#9e0fbfe8c21fecf1d1549659ede001284ddd636d"
 
+"@types/cheerio@*":
+  version "0.22.9"
+  resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.9.tgz#b5990152604c2ada749b7f88cab3476f21f39d7b"
+
+"@types/enzyme@^3.1.15":
+  version "3.1.15"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.15.tgz#fc9a9695ba9f90cd50c4967e64a8c66ec96913d1"
+  dependencies:
+    "@types/cheerio" "*"
+    "@types/react" "*"
+
 "@types/jest@^23.3.9":
   version "23.3.9"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.9.tgz#c16b55186ee73ae65e001fbee69d392c51337ad1"
