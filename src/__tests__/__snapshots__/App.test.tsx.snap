@@ -29,6 +29,18 @@ exports[`renders correctly 1`] = `
         item={true}
         xs={12}
       >
+        <WithStyles(Button)
+          color="primary"
+          onClick={[Function]}
+          variant="outlined"
+        >
+          Get last results
+        </WithStyles(Button)>
+      </WithStyles(Grid)>
+      <WithStyles(Grid)
+        item={true}
+        xs={12}
+      >
         <StatisticsChart
           data={Array []}
         />
