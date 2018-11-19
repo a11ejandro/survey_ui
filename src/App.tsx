@@ -1,22 +1,41 @@
-import * as React from 'react';
-import './App.css';
+import * as React from 'react'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 
-import logo from './logo.svg';
+import { Task } from './module'
+import './App.css'
+import TaskForm from './TaskForm'
 
-class App extends React.Component {
+class App extends React.Component<{}, {}> {
+
+
+  constructor(props: {}) {
+    super(props)
+
+    this.createTask = this.createTask.bind(this)
+  }
+
   public render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <Paper>
+          <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <h3>Client for survey calculator</h3>
+            </Grid>
+            <Grid item xs={12}>
+              <TaskForm createdCallback={this.createTask}/>
+            </Grid>
+          </Grid>
+        </Paper>
       </div>
-    );
+    )
+  }
+
+  private createTask (task: Task) {
+    console.log('submitted task')
   }
 }
 
-export default App;
+export default App
+
