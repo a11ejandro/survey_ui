@@ -30,6 +30,20 @@ class App extends React.Component<{}, State> {
     clearTimeout(this.timeout)
   }
 
+  public createTask (task: Task) {
+    createTask(task).then((success: boolean) => {
+      setTimeout(this.getResults, 3000)
+    })
+  }
+
+  public getResults () {
+    getStatistics().then((data: Statistics[]) => {
+      this.setState({
+        results: data
+      })
+    })
+  }
+
   public render() {
     return (
       <div className="App">
@@ -57,20 +71,6 @@ class App extends React.Component<{}, State> {
         </Paper>
       </div>
     )
-  }
-
-  private createTask (task: Task) {
-    createTask(task).then((success: boolean) => {
-      setTimeout(this.getResults, 3000)
-    })
-  }
-
-  private getResults () {
-    getStatistics().then((data: Statistics[]) => {
-      this.setState({
-        results: data
-      })
-    })
   }
 }
 

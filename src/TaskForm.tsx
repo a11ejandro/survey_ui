@@ -23,6 +23,21 @@ export default class TaskForm extends React.Component<Props, State> {
     }
   }
 
+  public handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target as HTMLInputElement
+    this.setState((prevState) => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  public submit (event: React.SyntheticEvent) {
+    event.preventDefault()
+    const task = { page: this.state.page, per_page: this.state.per_page} as Task
+
+    this.props.createdCallback(task)
+  }
+
   public render () {
     const {page, per_page} = this.state
     return (
@@ -57,20 +72,5 @@ export default class TaskForm extends React.Component<Props, State> {
         </Grid>
       </Grid>
     )
-  }
-
-  private handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target as HTMLInputElement
-    this.setState((prevState) => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
-  private submit (event: React.SyntheticEvent) {
-    event.preventDefault()
-    const task = { page: this.state.page, per_page: this.state.per_page} as Task
-
-    this.props.createdCallback(task)
   }
 }
