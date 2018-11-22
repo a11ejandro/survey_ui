@@ -17,5 +17,5 @@ export function getStatistics () {
 }
 
 export function createTask (task: Task) {
-  return promisify(true)
+  return promisify({ status: 200, data: {message: 'Success!'}})
 }
