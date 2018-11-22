@@ -60,4 +60,42 @@ describe ('task creation', () => {
     await app().instance().createTask(newTask)
     expect(setTimeout).toHaveBeenLastCalledWith(app().instance().getResults, 3000)
   })
+
+  describe ('toast notifications', () => {
+    beforeEach(() => {
+      app().setState({toasts: []})
+    })
+
+    it ('displays success notification', async () => {
+      await app().instance().createTask(newTask)
+      expect(app().state().toasts).toHaveLength(1)
+      const toasts = app().find('#toast-container').children()
+      expect(toasts).toHaveLength(1)
+      expect(toasts.first().props().type).toBe('success')
+    })
+
+    it ('displays error', async () => {
+      const spyOnCreateTask = jest.spyOn(Api, 'createTask').mockImplementation(() => Promise.reject)
+
+      await app().instance().createTask(newTask)
+      expect(app().state().toasts).toHaveLength(1)
+      const toasts = app().find('#toast-container').children()
+      expect(toasts).toHaveLength(1)
+      expect(toasts.first().props().type).toBe('warning')
+
+      spyOnCreateTask.mockReset()
+      spyOnCreateTask.mockRestore()
+    })
+
+    it ('removes all toasts on click', async () => {
+      await app().instance().createTask(newTask)
+      await app().instance().createTask(newTask)
+      expect(app().state().toasts).toHaveLength(2)
+      const firstToast = app().find('#toast-container').children().first()
+      firstToast.simulate('click')
+      expect(app().state().toasts).toHaveLength(0)
+      const toasts = app().find('#toast-container').children()
+      expect(toasts).toHaveLength(0)
+    })
+  })
 })
