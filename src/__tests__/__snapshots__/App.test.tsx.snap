@@ -47,5 +47,9 @@ exports[`renders correctly 1`] = `
       </WithStyles(Grid)>
     </WithStyles(Grid)>
   </WithStyles(Paper)>
+  <div
+    className="toast-top-right"
+    id="toast-container"
+  />
 </div>
 `;

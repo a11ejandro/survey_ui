@@ -2,7 +2,9 @@ import * as React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import { ToastMessageAnimated } from 'react-toastr'
 import 'toastr/build/toastr.css'
+
 
 import { Statistics, Task } from './module'
 import { createTask, getStatistics } from './Api'
@@ -27,17 +29,44 @@ class App extends React.Component<{}, State> {
 
     this.createTask = this.createTask.bind(this)
     this.getResults = this.getResults.bind(this)
+    this.removeToasts = this.removeToasts.bind(this)
+    this.renderToasts = this.renderToasts.bind(this)
   }
 
   public componentWillUnmount () {
     clearTimeout(this.timeout)
   }
 
-  public createTask (task: Task) {
-    createTask(task).then((success: boolean) => {
-      setTimeout(this.getResults, 3000)
+  public async createTask (task: Task) {
+    let newToast:Toast
+
+    try {
+      const result = await createTask(task)
+
+      if (result.status === 200) {
+        newToast = {
+          message: result.data.message,
+          type: 'success'
+        }
+        setTimeout(this.getResults, 3000)
+      } else {
+        newToast = {
+          type: 'warning',
+          message: 'Something went wrong. Check server logs for the stacktrace'
+        }
+      }
+    } catch (e) {
+      newToast = {
+        type: 'warning',
+        message: 'An error has occured. Check logs'
+      }
+    }
+
+    this.setState({
+      toasts: [newToast, ...this.state.toasts]
     })
   }
+
 
   public getResults () {
     getStatistics().then((data: Statistics[]) => {
@@ -45,6 +74,24 @@ class App extends React.Component<{}, State> {
         results: data
       })
     })
+  }
+
+  public removeToasts (event: React.MouseEvent<HTMLElement>) {
+    this.setState({
+      toasts: []
+    })
+  }
+
+  public renderToasts () {
+    return (
+      this.state.toasts.map((toast, index) => (
+          <ToastMessageAnimated key={index}
+                                onClick={this.removeToasts}
+                                {...toast}    
+          />
+        )
+      )
+    )
   }
 
   public render() {
@@ -72,6 +119,9 @@ class App extends React.Component<{}, State> {
             </Grid>
           </Grid>
         </Paper>
+        <div id='toast-container' className='toast-top-right'>
+          { this.renderToasts() }
+        </div>
       </div>
     )
   }
