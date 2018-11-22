@@ -2,6 +2,7 @@ import * as React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import 'toastr/build/toastr.css'
 
 import { Statistics, Task } from './module'
 import { createTask, getStatistics } from './Api'
@@ -10,7 +11,8 @@ import StatisticsChart from './StatisticsChart'
 import TaskForm from './TaskForm'
 
 interface State {
-  results: Statistics[]
+  results: Statistics[],
+  toasts: Toast[]
 }
 
 class App extends React.Component<{}, State> {
@@ -19,7 +21,8 @@ class App extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props)
     this.state = {
-      results: []
+      results: [],
+      toasts: []
     }
 
     this.createTask = this.createTask.bind(this)
