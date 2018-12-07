@@ -5,12 +5,13 @@ import Button from '@material-ui/core/Button'
 import { ToastMessageAnimated } from 'react-toastr'
 import 'toastr/build/toastr.css'
 
-
 import { Statistics, Task } from './module'
 import { createTask, getStatistics } from './Api'
 import './App.css'
 import StatisticsChart from './StatisticsChart'
 import TaskForm from './TaskForm'
+
+const DELAY_TO_REFRESH_RESULTS = 3000
 
 interface State {
   results: Statistics[],
@@ -48,7 +49,7 @@ class App extends React.Component<{}, State> {
           message: result.data.message,
           type: 'success'
         }
-        setTimeout(this.getResults, 3000)
+        setTimeout(this.getResults, DELAY_TO_REFRESH_RESULTS)
       } else {
         newToast = {
           type: 'warning',

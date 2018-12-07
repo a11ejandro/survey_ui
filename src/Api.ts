@@ -1,8 +1,9 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { Statistics, Task } from './module'
 
+const socketAddress = process.env.API_URL || ''
 const axiosInstance = axios.create({
-  baseURL: '/api/v1',
+  baseURL: socketAddress + '/api/v1',
   timeout: 10000,
   headers: {
     common: {
@@ -11,13 +12,13 @@ const axiosInstance = axios.create({
   }
 })
 
-export async function createTask (task:Task) : Promise<boolean> {
+
+export async function createTask (task:Task) : Promise<AxiosResponse> {
   try {
-    await axiosInstance.post('tasks', task)
-    return true
+    return await axiosInstance.post('tasks', task)
   } catch (e) {
     console.log(e)
-    return Promise.reject<boolean>(e)
+    return Promise.reject(e)
   }
 }
 
