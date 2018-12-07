@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import { ToastMessageAnimated } from 'react-toastr'
 import 'toastr/build/toastr.css'
 
-import { Statistics, Task } from './module'
+import { Statistics, Task, Toast } from './module'
 import { createTask, getStatistics } from './Api'
 import './App.css'
 import StatisticsChart from './StatisticsChart'
