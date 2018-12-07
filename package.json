@@ -7,6 +7,7 @@
     "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "chartjs-plugin-datalabels": "^0.4.0",
+    "dotenv": "^6.2.0",
     "react": "^16.6.3",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.6.3",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/chart.js": "^2.7.40",
+    "@types/dotenv": "^6.1.0",
     "@types/enzyme": "^3.1.15",
     "@types/jest": "^23.3.9",
     "@types/node": "^10.12.9",
